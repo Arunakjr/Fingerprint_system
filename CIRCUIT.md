@@ -176,7 +176,7 @@ Adafruit Fingerprint Sensor Library
 Enable a mobile hotspot on your phone:
 
 ```
-SSID     : pwm
+SSID     : Texawave
 Password : 12345678
 ```
 
