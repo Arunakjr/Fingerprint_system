@@ -176,13 +176,13 @@ Adafruit Fingerprint Sensor Library
 Enable a mobile hotspot on your phone:
 
 ```
-SSID     : Texawave
-Password : 12345678
+SSID     : Texawave //Use your ssid
+Password : 12345678 //Use your Password
 ```
 
 > To use a different network change these lines in the sketch:
 > ```cpp
-> const char* ssid     = "pwm";
+> const char* ssid     = "Texa";
 > const char* password = "12345678";
 > ```
 
