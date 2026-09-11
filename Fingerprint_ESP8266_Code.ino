@@ -12,7 +12,7 @@
 #define BUZZER_PIN D3
 
 const char* ssid      = "Your SSID";
-const char* password  = "Your password";
+const char* password  = "Your Password";
 const char* scriptURL = "SCRIPT_URL"; //Generete it through the Google spreadsheet
 
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
