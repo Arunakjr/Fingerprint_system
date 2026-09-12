@@ -1,11 +1,11 @@
-#include <Arduino.h>
-#include <Wire.h>
-#include <WiFi.h>
-#include <WiFiClientSecure.h>
-#include <HTTPClient.h>
-#include <Adafruit_GFX.h>
-#include <Adafruit_SSD1306.h>
-#include <Adafruit_Fingerprint.h>
+#include <Arduino.h>       //core framework (pinMode, delay, Serial, tone/noTone, etc.)
+#include <Wire.h>          //I2C driver
+#include <WiFi.h>          //ESP32's station/AP Wi-Fi stac
+#include <WiFiClientSecure.h>    //TLS-wrapped TCP client, needed because the Google Apps Script endpoint is https://.
+#include <HTTPClient.h>          //a thin HTTP request/response layer built on top of a Client (here, WiFiClientSecure).
+#include <Adafruit_GFX.h>         //the graphics primitive library and the SSD1306-specific driver that implements it.
+#include <Adafruit_SSD1306.h>     //the graphics primitive library and the SSD1306-specific driver that implements it.
+#include <Adafruit_Fingerprint.h> //driver for the optical fingerprint module (talks a binary packet protocol over UART).
 
 // ================================================================
 // ESP32-C3 SUPER MINI - FINGERPRINT ATTENDANCE SYSTEM
@@ -15,11 +15,11 @@
 // ---------------------------- Pins -------------------------------
 // Avoid ESP32-C3 strapping pins GPIO2, GPIO8 and GPIO9.
 // GPIO18/19 are normally used by native USB on C3 boards.
-constexpr uint8_t OLED_SDA_PIN = 4;
-constexpr uint8_t OLED_SCL_PIN = 5;
+constexpr uint8_t OLED_SDA_PIN = 4; //compile-time constants with actual C++ types, so the compiler can type-check them (better than a raw macro).
+constexpr uint8_t OLED_SCL_PIN = 5;  //chosen because the ESP32-C3 doesn't have fixed I2C pins; Wire.begin(sda, scl) later remaps them.
 constexpr uint8_t FP_RX_PIN    = 0;   // ESP32 RX <- fingerprint TX
 constexpr uint8_t FP_TX_PIN    = 1;   // ESP32 TX -> fingerprint RX
-constexpr uint8_t BUZZER_PIN   = 10;
+constexpr uint8_t BUZZER_PIN   = 10;   //passive buzzer or transducer driven with tone()/noTone().
 
 // ---------------------------- OLED -------------------------------
 constexpr uint8_t SCREEN_WIDTH  = 128;
@@ -43,7 +43,7 @@ const char *scriptURL =
     "https://script.google.com/macros/s/AKfycbxubwjYiVg0JcdjFaWCcgruahPGND9iLwKXwFKAM7ocfdSMYZ0hzn6MQRCoY7KSAjHogw/exec";
 
 // --------------------------- Settings ----------------------------
-constexpr uint16_t MIN_MATCH_CONFIDENCE = 50;
+constexpr uint16_t MIN_MATCH_CONFIDENCE = 50;             //uint8_t does slower speed that's why we're using uint16_t
 constexpr uint32_t ENROLL_TIMEOUT_MS     = 30000;
 constexpr uint32_t WIFI_TIMEOUT_MS       = 15000;
 constexpr uint32_t FINGER_RELEASE_MS     = 12000;
@@ -111,15 +111,15 @@ void stopBuzzer() {
 }
 
 void beepSuccess() {
-  tone(BUZZER_PIN, 1000, 150); delay(180);
-  tone(BUZZER_PIN, 1400, 150); delay(180);
-  tone(BUZZER_PIN, 1800, 200); delay(220);
+  tone(BUZZER_PIN, 1000, 150); delay(180);        //Pin, Hertz, Duration
+  tone(BUZZER_PIN, 1400, 150); delay(180);        //Pin, Hertz, Duration
+  tone(BUZZER_PIN, 1800, 200); delay(220);        //Pin, Hertz, Duration
   stopBuzzer();
 }
 
 void beepDenied() {
-  tone(BUZZER_PIN, 400, 300); delay(350);
-  tone(BUZZER_PIN, 300, 400); delay(450);
+  tone(BUZZER_PIN, 400, 300); delay(350);         //Pin, Hertz, Duration
+  tone(BUZZER_PIN, 300, 400); delay(450);         //Pin, Hertz, Duration
   stopBuzzer();
 }
 
