@@ -105,7 +105,7 @@ String jsonEscape(const String &input) {
 // ================================================================
 // Buzzer
 // ================================================================
-
+//noTone - buzzer not beep //tone - buzzer beeps
 void stopBuzzer() {
   noTone(BUZZER_PIN);
 }
