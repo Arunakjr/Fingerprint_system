@@ -36,7 +36,7 @@ Adafruit_Fingerprint finger(&fpSerial);
 // ---------------------------- Wi-Fi ------------------------------
 // For a real deployment, move these values to a secrets.h file.
 const char *ssid     = "Texa";           //Your SSID
-const char *password = "12345678";
+const char *password = "12345678";        //Your Password
 
 // IMPORTANT: use the raw URL only. Do not paste Markdown [text](url).
 const char *scriptURL =
