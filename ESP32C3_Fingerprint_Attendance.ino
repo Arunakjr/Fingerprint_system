@@ -44,9 +44,9 @@ const char *scriptURL =
 
 // --------------------------- Settings ----------------------------
 constexpr uint16_t MIN_MATCH_CONFIDENCE = 50;             //uint8_t does slower speed that's why we're using uint16_t
-constexpr uint32_t ENROLL_TIMEOUT_MS     = 30000;
-constexpr uint32_t WIFI_TIMEOUT_MS       = 15000;
-constexpr uint32_t FINGER_RELEASE_MS     = 12000;
+constexpr uint32_t ENROLL_TIMEOUT_MS     = 30000;         //30sec
+constexpr uint32_t WIFI_TIMEOUT_MS       = 15000;         //15sec
+constexpr uint32_t FINGER_RELEASE_MS     = 12000;         //12sec
 
 bool enrollMode = false;
 int enrollID = -1;
