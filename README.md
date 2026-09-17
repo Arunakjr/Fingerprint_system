@@ -1,6 +1,6 @@
 <div align="center">
 
-# FingerAttend
+# Fingerprint Attend System
 
 ### Fingerprint-Based Attendance System using ESP8266 and Google Sheets
 
